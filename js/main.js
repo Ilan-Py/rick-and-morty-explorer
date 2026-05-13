@@ -75,5 +75,16 @@ document.getElementById("inputNombre").addEventListener("keydown", (e) => {
   }
 });
 
+// --Cerrar modal con botón o click fuera--
+document.getElementById("modal-cerrar").addEventListener("click", cerrarModal);
+document.getElementById("modal-overlay").addEventListener("click", (e) => {
+  if (e.target === document.getElementById("modal-overlay")) cerrarModal();
+});
+
+// --Cerrar modal con Escape--
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") cerrarModal();
+});
+
 //--Carga inicial--
 cargar();
