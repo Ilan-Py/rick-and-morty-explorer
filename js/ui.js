@@ -53,12 +53,12 @@ function observarCards() {
         const index = [...entry.target.parentElement.children].indexOf(entry.target);
         setTimeout(() => {
           entry.target.classList.add("visible");
-        }, index * 60); // 60ms entre cada card
+        }, index * 15); // 10ms entre cada card
         observer.unobserve(entry.target); // deja de observar una vez visible
       }
     });
   }, {
-    threshold: 0.1 // aparece cuando el 10% de la card es visible
+    threshold: 0.05 // aparece cuando el 5% de la card es visible
   });
 
   document.querySelectorAll(".card").forEach(card => observer.observe(card));
