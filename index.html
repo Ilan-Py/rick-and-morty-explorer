@@ -1,0 +1,68 @@
+<!--Codigo por ILAN Y MAXI-->
+    <!--Rick and Morty Explorer-->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rick and Morty Explorer</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <!--Header-->
+  <header>
+    <h1>Rick and Morty Explorer</h1>
+  </header>
+
+    <!--Filtros-->
+  <section id="filtros">
+    <input type="text" id="inputNombre" placeholder="Buscar por nombre...">
+    <select id="selectStatus">
+      <option value="">Estado</option>
+      <option value="alive">Alive</option>
+      <option value="dead">Dead</option>
+      <option value="unknown">Unknown</option>
+    </select>
+    <select id="selectEspecie">
+      <option value="">Especie</option>
+      <option value="Human">Human</option>
+      <option value="Alien">Alien</option>
+      <option value="Humanoid">Humanoid</option>
+      <option value="Robot">Robot</option>
+      <option value="Animal">Animal</option>
+    </select>
+    <select id="selectGenero">
+      <option value="">Género</option>
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+      <option value="Genderless">Genderless</option>
+      <option value="unknown">Unknown</option>
+    </select>
+    <button id="btnBuscar">Buscar</button>
+    <button id="btnLimpiar">Limpiar</button>
+  </section>
+
+    <!--Cards-->
+  <main>
+    <section id="contenedor-cards"></section>
+  </main>
+
+    <!--Paginacion-->
+  <section id="paginacion">
+    <button id="btnAnterior">← Anterior</button>
+    <span id="infoPagina">Página 1 de 1</span>
+    <button id="btnSiguiente">Siguiente →</button>
+  </section>
+
+    <!--Footer-->
+  <footer>
+    <p>Datos provistos por <a href="https://rickandmortyapi.com" target="_blank">Rick and Morty API</a></p>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+</html>
