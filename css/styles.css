@@ -104,6 +104,15 @@ main {
   overflow: hidden;
   border: 1px solid #5C677D;
   transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s,
+              opacity 0.5s ease, transform 0.5s ease; 
+}
+
+.card.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .card:hover {

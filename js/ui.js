@@ -32,6 +32,8 @@ function renderizarCards(personajes) {
 
     contenedor.appendChild(card);
   });
+
+  observarCards();
 }
 
 //--Actualizar info de paginación--
@@ -41,6 +43,25 @@ function actualizarPaginacion(paginaActual, totalPaginas) {
 
   document.getElementById("btnAnterior").disabled = paginaActual <= 1;
   document.getElementById("btnSiguiente").disabled = paginaActual >= totalPaginas;
+}
+
+function observarCards() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        // Delay escalonado según la posición de la card
+        const index = [...entry.target.parentElement.children].indexOf(entry.target);
+        setTimeout(() => {
+          entry.target.classList.add("visible");
+        }, index * 60); // 60ms entre cada card
+        observer.unobserve(entry.target); // deja de observar una vez visible
+      }
+    });
+  }, {
+    threshold: 0.1 // aparece cuando el 10% de la card es visible
+  });
+
+  document.querySelectorAll(".card").forEach(card => observer.observe(card));
 }
 
 //--Limpiar filtros del formulario--
