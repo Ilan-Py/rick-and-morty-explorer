@@ -104,6 +104,15 @@ main {
   overflow: hidden;
   border: 1px solid #5C677D;
   transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s,
+              opacity 0.5s ease, transform 0.5s ease; 
+}
+
+.card.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .card:hover {
@@ -225,4 +234,148 @@ footer a:hover {
 @media (max-width: 480px) {
   header h1 { font-size: 20px; }
   #filtros input, #filtros select { min-width: 100%; }
+}
+
+/* --Modal-- */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: #00000099;
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 16px;
+  transition: opacity 0.3s ease;
+}
+
+.modal-overlay.oculto {
+  display: none;
+}
+
+.modal {
+  background: #101820;
+  border: 1px solid #42C5F5;
+  border-radius: 12px;
+  box-shadow: 0 0 40px #42C5F544;
+  max-width: 480px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  position: relative;
+  padding: 24px;
+  animation: modalEntrada 0.3s ease;
+}
+
+@keyframes modalEntrada {
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+#modal-cerrar {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: transparent;
+  border: 1px solid #5C677D;
+  color: #B7E4F9;
+  border-radius: 6px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+#modal-cerrar:hover {
+  border-color: #FF3C38;
+  color: #FF3C38;
+}
+
+/* Contenido del modal */
+.modal-header {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.modal-header img {
+  width: 110px;
+  height: 110px;
+  border-radius: 10px;
+  object-fit: cover;
+  border: 2px solid #42C5F5;
+}
+
+.modal-header-info h2 {
+  font-size: 18px;
+  color: #00E5FF;
+  margin-bottom: 8px;
+}
+
+.modal-header-info .badge {
+  margin-bottom: 6px;
+}
+
+.modal-header-info p {
+  font-size: 13px;
+  color: #5C677D;
+  margin-bottom: 4px;
+}
+
+.modal-seccion {
+  border-top: 1px solid #5C677D33;
+  padding-top: 14px;
+  margin-top: 14px;
+}
+
+.modal-seccion h4 {
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: #5C677D;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.episodios-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.episodio-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #5C677D18;
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 13px;
+}
+
+.episodio-codigo {
+  color: #A8FF00;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.episodio-nombre {
+  color: #B7E4F9;
+  flex: 1;
+  padding: 0 10px;
+}
+
+.episodio-fecha {
+  color: #5C677D;
+  font-size: 11px;
+}
+
+.modal-cargando {
+  text-align: center;
+  color: #5C677D;
+  padding: 20px;
+  font-size: 14px;
 }

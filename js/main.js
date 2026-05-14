@@ -7,6 +7,7 @@ let filtrosActivos = {};
 
 //--Cargar personajes y renderizar--
 async function cargar() {
+  window.scrollTo({ top: 0, behavior: "smooth" });
   const data = await obtenerPersonajes(paginaActual, filtrosActivos);
 
   if (!data) {
@@ -15,11 +16,11 @@ async function cargar() {
     actualizarPaginacion(1, 1);
     return;
   }
-
+  
   totalPaginas = data.info.pages;
   renderizarCards(data.results);
   actualizarPaginacion(paginaActual, totalPaginas);
-
+  
   console.log("Página:", paginaActual, "| Total páginas:", totalPaginas);
 }
 
@@ -72,6 +73,17 @@ document.getElementById("inputNombre").addEventListener("keydown", (e) => {
     paginaActual = 1;
     cargar();
   }
+});
+
+// --Cerrar modal con botón o click fuera--
+document.getElementById("modal-cerrar").addEventListener("click", cerrarModal);
+document.getElementById("modal-overlay").addEventListener("click", (e) => {
+  if (e.target === document.getElementById("modal-overlay")) cerrarModal();
+});
+
+// --Cerrar modal con Escape--
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") cerrarModal();
 });
 
 //--Carga inicial--

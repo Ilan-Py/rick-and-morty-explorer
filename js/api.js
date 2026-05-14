@@ -34,3 +34,19 @@ async function obtenerPersonajes(pagina = 1, filtros = {}) {
     return null;
   }
 }
+
+// --Obtener episodios por array de URLs--
+async function obtenerEpisodios(urls) {
+  // Toma solo los primeros 5 para no saturar
+  const primeras = urls.slice(0, 5);
+  // Extrae los IDs de las URLs
+  const ids = primeras.map(url => url.split("/").pop()).join(",");
+  try {
+    const res = await fetch(`https://rickandmortyapi.com/api/episode/${ids}`);
+    const data = await res.json();
+    // Si es un solo episodio la API devuelve objeto, no array
+    return Array.isArray(data) ? data : [data];
+  } catch {
+    return [];
+  }
+}
